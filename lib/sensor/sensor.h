@@ -13,11 +13,10 @@ private:
 public:
     sensor(uint8_t pinLectura, int direccionSensor, String unidaSensor);
     void adecuacion();
-    byte parte_H();
-    byte parte_L();
-    float lecturaSensor();
+    byte origen_H();
+    byte origen_L();
     String unidad();
-
+    float lecturaSensor();
 };
 
 #endif
