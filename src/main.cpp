@@ -21,8 +21,8 @@ void setup()
 
 }
 void adecuar_sondeo_individual(byte datoRepuestaIndividual[20]){
-    byte direccionDestinoH = direccionDestino & 0x00ff;
-    byte direccionDestinoL = (direccionDestino >> 8) & 0x00ff;
+    byte direccionDestinoL = direccionDestino & 0x00ff;
+    byte direccionDestinoH = (direccionDestino >> 8) & 0x00ff;
     datoRepuestaIndividual[0] = 1;//SOH
     datoRepuestaIndividual[1] = Sensor0.origen_H();
     datoRepuestaIndividual[2] = Sensor0.origen_L();
@@ -55,9 +55,10 @@ void loop()
     lcd.setCursor(0, 0);
     lcd.print("calculo CRC");
     lcd.setCursor(1,1);
-    lcd.print(sensor3.calculoCrc(vector));
-    Serial.print(sensor3.calculoCrc(vector));
+    int lectura1 = sensor3.calculoCrc(vector);
+    lcd.print(lectura1);
+    //Serial.print(sensor3.calculoCrc(vector));
     lcd.setCursor(10,1);
     lcd.print(Sensor0.lecturaSensor());
-    delay(3000);
+    
 }
