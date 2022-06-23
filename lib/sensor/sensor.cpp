@@ -16,7 +16,7 @@ void sensor::adecuacion()
 float sensor::lecturaSensor()
 {
     int lectura = analogRead(_pinLectura);
-    float lectura1 = map(lectura,0.00,1023.00,0.00,5.00);
+    float lectura1 = map(lectura,0.00,1023.00,0.00,200.00);
     return lectura1;
 }
 byte sensor::origen_H()

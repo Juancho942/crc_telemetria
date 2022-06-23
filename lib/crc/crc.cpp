@@ -45,8 +45,10 @@ byte crc::calculoCrc(byte vector[20])
             // Serial.println(j);
             calculo_crc[j] = bitRead(_vector[i], a);
             a -= 1;
+            Serial.print(calculo_crc[j]);
         }
     }
+    Serial.println();
     for (int i = 0; i < 136; i++)
     {
         vectorTemporal[7 - cerosIncrementar] = calculo_crc[i];
@@ -81,18 +83,28 @@ byte crc::calculoCrc(byte vector[20])
                     for (int c = 0; c < 7; c++)
                     { // realiza la xor
                         vectorTemporal[c] = G[c] ^ vectorTemporal[c];
-                        // Serial.println("realiza la operacion xor");
                         Serial.print(vectorTemporal[c]);
                     }
                     caso = 0;
+                    Serial.println();
                 }
             }
         }
     }
     byte retorno;
+    Serial.print("vector final : ");
     for (int i = 0; i < 7; i++)
     {
-        bitWrite(retorno, vectorTemporal[i], (6 - i));
+        Serial.print(vectorTemporal[i]);
     }
+    Serial.println();
+    int d = 6;
+    for (int i = 0; i < 7; i++)
+    {
+        bitWrite(retorno, d, vectorTemporal[i]);
+        d -= 1;
+    }
+    Serial.print("Retonro : ");
+    Serial.println(retorno,BIN);
     return (retorno);
 }
