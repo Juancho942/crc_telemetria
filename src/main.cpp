@@ -85,5 +85,5 @@ void loop()
     //Serial.print(sensor3.calculoCrc(vector));
     lcd.setCursor(10,1);
     lcd.print(Sensor0.lecturaSensor());
-    delay(1000);
+    delay(500);
 }
