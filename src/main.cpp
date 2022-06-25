@@ -4,11 +4,13 @@
 #include "Wire.h"
 #include <crc.h>
 
+#define porcentajeDeCambio = 10
+
 byte vector[20];
 int direccionDestino = 2000;
-sensor Sensor0(A0, 2000, " °C");
-sensor Sensor1(A1, 2000, " °C");
-sensor sensor2(A2, 2000, " cm");
+sensor Sensor0(A0, 2000," °C",0.00,200.00);
+sensor Sensor1(A1, 2000," °C",0.00, 500.00);
+sensor Sensor2(A2, 2000," cm",0.00,40.00);
 crc sensor3(0b1001101);
 
 // initialize the library with the numbers of the interface pins
@@ -75,15 +77,11 @@ void adecuar_sondeo_individual(byte datoRepuestaIndividual[20]){
 
 void loop()
 { 
-    lcd.clear();
-    adecuar_sondeo_individual(vector);
-    lcd.setCursor(0, 0);
-    lcd.print("calculo CRC");
-    lcd.setCursor(1,1);
-    int lectura1 = sensor3.calculoCrc(vector);
-    lcd.print(lectura1);
-    //Serial.print(sensor3.calculoCrc(vector));
-    lcd.setCursor(10,1);
-    lcd.print(Sensor0.lecturaSensor());
-    delay(500);
+  Serial.print("la lectura del sensor 1 es : ");
+  Serial.println(Sensor0.porcentajeLectura(10));
+  Serial.print("la lectura del sensor 2 es : ");
+  Serial.println(Sensor1.porcentajeLectura(10));
+  Serial.print("la lectura del sensor 2 es : ");
+  Serial.println(Sensor2.porcentajeLectura(10));
+  delay(500);
 }
