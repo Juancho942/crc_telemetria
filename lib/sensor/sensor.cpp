@@ -9,15 +9,17 @@ sensor::sensor(uint8_t pinLectura, int direccionSensor, String unidaSensor,
     _unidaSensor = unidaSensor;
     _rangoMinimo = rangoMinimo;
     _rangoMaximo = rangoMaximo;
-
     pinMode(_pinLectura, OUTPUT);
+    _lecturaTiempoPasado = 0;
 }
 
 void sensor::adecuacion()
 {
 }
 float sensor::lecturaSensor()
-{
+{   
+    int lectura = analogRead(_pinLectura);
+    _lecturaSensor = lectura;
     return _lecturaSensor;
 }
 byte sensor::origen_H()
@@ -35,20 +37,19 @@ String sensor::unidad()
     return _unidaSensor;
 }
 float sensor::porcentajeLectura(float porcentaje)
-{
-    int lectura = analogRead(_pinLectura);
+{   float lectura = lecturaSensor();
     _lecturaSensor = map(lectura, 0.00, 1023.00, _rangoMinimo, _rangoMaximo);
     float porcentajeLecturaActual = map(_lecturaSensor, _rangoMinimo, _rangoMaximo, 0.00, 100.00);
     float porcentajeLecturaPasada = map(_lecturaTiempoPasado, _rangoMinimo, _rangoMaximo, 0.00, 100.00);
     if ((porcentajeLecturaActual - porcentajeLecturaPasada) > 10)
     {
-        return (porcentajeLecturaActual);
-        _lecturaTiempoPasado = _lecturaSensor; 
+        _lecturaTiempoPasado = _lecturaSensor;
+        return (porcentajeLecturaActual); 
     }
     else if ((porcentajeLecturaPasada - porcentajeLecturaActual) > 10)
-    {
-        return (porcentajeLecturaActual);
+    { 
         _lecturaTiempoPasado = _lecturaSensor; 
+        return (porcentajeLecturaActual);
     }
     else
         return (0);

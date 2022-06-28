@@ -25,8 +25,6 @@ byte crc::calculoCrc(byte vector[20])
     memset(calculo_crc, 3, 136);
     for (int i = 1; i < 18; i++)
     { // empiezo a recorrer byte por byte de la cadena de datos
-        // Serial.print(i);
-        // Serial.println(" for para convertir los binarios de vector con i : ");
         int b = 0;
         for (int j = 0; j < 136; j++)
         {
@@ -41,8 +39,6 @@ byte crc::calculoCrc(byte vector[20])
         a = 7;
         for (int j = b; j < (b + 8); j++)
         {
-            // Serial.print("for que saca los binarios de cada byte con j : ");
-            // Serial.println(j);
             calculo_crc[j] = bitRead(_vector[i], a);
             a -= 1;
         }

@@ -79,9 +79,14 @@ void loop()
 { 
   Serial.print("la lectura del sensor 1 es : ");
   Serial.println(Sensor0.porcentajeLectura(10));
-  Serial.print("la lectura del sensor 2 es : ");
-  Serial.println(Sensor1.porcentajeLectura(10));
-  Serial.print("la lectura del sensor 2 es : ");
-  Serial.println(Sensor2.porcentajeLectura(10));
+  lcd.setCursor(1,0);
+  lcd.print("lectura");
+  lcd.setCursor(1,1);
+  lcd.print(Sensor0.lecturaSensor());
   delay(500);
+ 
+  
+
+
+
 }
