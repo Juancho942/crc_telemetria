@@ -13,7 +13,8 @@ private:
     float _lecturaTiempoPasado;
     float _rangoMinimo;
     float _rangoMaximo;
-    
+    float _valorSensor;
+    boolean _booleangSensor;
 
 public:
     sensor(uint8_t pinLectura, int direccionSensor, String unidaSensor, float rangoMinimo, float rangoMaximo);
@@ -23,6 +24,8 @@ public:
     String unidad();
     float lecturaSensor();
     float porcentajeLectura(float porcentaje);
+    float ValorSensor();
+    void booleanLectura();
 };
 
 #endif
